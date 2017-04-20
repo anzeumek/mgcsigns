@@ -1,0 +1,5 @@
+name: MinigamesCountSigns
+main: me.anfereon.MinigamesCountSigns
+version: 1.0.0
+authors: [Anfereon]
+depend: [Minigames]
