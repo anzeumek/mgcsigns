@@ -36,22 +36,22 @@ public class SignListener implements Listener{
 					plugin.MGCSignsData.addMGCSignToData(ChatColor.stripColor(event.getLine(1)), event.getBlock().getLocation());
 
 					event.setLine(0, ChatColor.BLUE.toString() + ChatColor.BOLD.toString() + ChatColor.stripColor(event.getLine(1)));
-					event.setLine(1, "Igralcev:");
+					event.setLine(1, "Players:");
 					event.setLine(2, ChatColor.GOLD + "0");
-					player.sendMessage("MGCSign created");
+					player.sendMessage("MGCSign created!");
 					Bukkit.getLogger().info("MGCSign created at " + event.getBlock().getLocation()); //message to the console
 					return;
 				}
 				//Player does not have the permission to create countSigns
 				else {
-					player.sendMessage("You do not have the permission to do that");
+					player.sendMessage("You do not have the permission to do that!");
 					event.setCancelled(true);
 					return;
 				}
 			}
 			else {
 				//minigame with that name does not exist
-				player.sendMessage("That minigame does not exist");
+				player.sendMessage("That minigame does not exist!");
 				event.setCancelled(true);
 				return;
 			}

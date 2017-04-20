@@ -13,12 +13,12 @@ public class MinigamesCountSigns extends JavaPlugin{
 	//seperate config for data storage
     File newConfig;
     FileConfiguration newConfigz;
-    //initialize stuff
+    //initialize
 	public MGCSignsData MGCSignsData;
 	public SignListener signListener;
 	public EventListener eventListener;
 	public UpdateSigns updateSigns;
-	//creates permissions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	//creates permissions!
 	public Permission createSignPermission = new Permission("minigamesCountSigns.create");
 	
 	@Override

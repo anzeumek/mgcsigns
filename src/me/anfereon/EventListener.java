@@ -1,6 +1,5 @@
 package me.anfereon;
 
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -13,14 +12,14 @@ public class EventListener implements Listener{
 	
 	private MinigamesCountSigns plugin;
 	
-	public EventListener(MinigamesCountSigns pluginMain) { //konstruktor
+	public EventListener(MinigamesCountSigns pluginMain) { //constructor
 		this.plugin = pluginMain;
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 	
 	@EventHandler 	// minigame ends
     public void onEndMinigame(EndMinigameEvent event){
-		Bukkit.getLogger().info("minigame ended");
+		//Bukkit.getLogger().info("minigame ended");
 		plugin.updateSigns.UpdateSignsOf(event.getMinigame().toString(), 0);
 	}
 	

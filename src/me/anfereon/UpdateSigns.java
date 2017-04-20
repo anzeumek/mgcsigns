@@ -16,7 +16,7 @@ public class UpdateSigns {
 		this.plugin = pluginMain;
 	}
 	
-	public boolean UpdateSignsOf(String minigameName, int SteviloIgralcev){//returns true if sign was updated
+	public boolean UpdateSignsOf(String minigameName, int NoOfPlayers){//returns true if sign was updated
 		ArrayList<Integer> arrayList;
 		arrayList = plugin.MGCSignsData.getMGCSignsMatchingIndexes(minigameName);
 		if (arrayList != null) {
@@ -24,11 +24,11 @@ public class UpdateSigns {
 				try {
 					Block b = plugin.getServer().getWorlds().get(0).getBlockAt(plugin.MGCSignsData.getMGCSignsLocationByIndex(arrayList.get(i)));
 					Sign sign = (Sign) b.getState();
-					if (SteviloIgralcev == 0) {
+					if (NoOfPlayers == 0) {
 						sign.setLine(2, ChatColor.GOLD + "0");
 					}
 					else {
-						sign.setLine(2, ChatColor.GREEN + String.valueOf(SteviloIgralcev));
+						sign.setLine(2, ChatColor.GREEN + String.valueOf(NoOfPlayers));
 					}
 					sign.update();
 				}
@@ -46,7 +46,7 @@ public class UpdateSigns {
 		}
 	}
 	
-	public boolean IncrementSignsOf(String minigameName, int DodatnoSteviloIgralcev){//returns true if sign was updated
+	public boolean IncrementSignsOf(String minigameName, int IncrementNoOfPlayers){//returns true if sign was updated
 		ArrayList<Integer> arrayList;
 		arrayList = plugin.MGCSignsData.getMGCSignsMatchingIndexes(minigameName);
 		if (arrayList != null) {
@@ -55,11 +55,11 @@ public class UpdateSigns {
 					Block b = plugin.getServer().getWorlds().get(0).getBlockAt(plugin.MGCSignsData.getMGCSignsLocationByIndex(arrayList.get(i)));
 					Sign sign = (Sign) b.getState();
 					Integer in = new Integer(ChatColor.stripColor(sign.getLine(2)));
-					sign.setLine(2, ChatColor.GREEN + String.valueOf(in + DodatnoSteviloIgralcev));
+					sign.setLine(2, ChatColor.GREEN + String.valueOf(in + IncrementNoOfPlayers));
 					sign.update();
 				}
 				catch (Exception e) {
-					Bukkit.getLogger().info("[MGCSIgns] Error incrementing signs for " + minigameName + "removing sign from data");
+					//Bukkit.getLogger().info("[MGCSIgns] Error incrementing signs for " + minigameName + "removing sign from data");
 					//remove sign from data, because probably it does not exist any more
 					plugin.MGCSignsData.removeMGCSignFromData(minigameName, plugin.MGCSignsData.getMGCSignsLocationByIndex(arrayList.get(i)));
 					return false;
@@ -71,7 +71,7 @@ public class UpdateSigns {
 			return false;
 		}
 	}
-	public boolean DecrementSignsOf(String minigameName, int OdvzetoSteviloIgralcev){//returns true if sign was updated
+	public boolean DecrementSignsOf(String minigameName, int DecrementNoOfPlayers){//returns true if sign was updated
 		ArrayList<Integer> arrayList;
 		arrayList = plugin.MGCSignsData.getMGCSignsMatchingIndexes(minigameName);
 		if (arrayList != null) {
@@ -81,24 +81,24 @@ public class UpdateSigns {
 					Sign sign = (Sign) b.getState();
 					Integer in = new Integer(ChatColor.stripColor(sign.getLine(2)));
 					if (in > 0) {//is 0 after minigame ends - this prevents counter to go into negtive numbers
-						if (in - OdvzetoSteviloIgralcev == 0) {
+						if (in - DecrementNoOfPlayers == 0) {
 							sign.setLine(2, ChatColor.GOLD + "0");
 						}
 						else {
-							sign.setLine(2, ChatColor.GREEN + String.valueOf(in - OdvzetoSteviloIgralcev));
+							sign.setLine(2, ChatColor.GREEN + String.valueOf(in - DecrementNoOfPlayers));
 						}
 						sign.update();
-						Bukkit.getLogger().info("[MGCSIgns] decrementing playercount for " + minigameName);
+						//Bukkit.getLogger().info("[MGCSIgns] decrementing playercount for " + minigameName);
 					}
 				}
 				catch (Exception e) {
-					Bukkit.getLogger().info("[MGCSIgns] Error updating signs for " + minigameName);
+					//Bukkit.getLogger().info("[MGCSIgns] Error updating signs for " + minigameName);
 					return false;
 				}
 			return true;
 		}
 		else {
-			Bukkit.getLogger().info("Problem getting ArrayList of intgers from MGCSignsData");
+			Bukkit.getLogger().info("Problem getting ArrayList of integers from MGCSignsData");
 			return false;
 		}
 	}
